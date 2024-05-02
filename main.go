@@ -11,21 +11,18 @@ type Cache struct {
 	mu   sync.Mutex
 }
 
-// NewCache creates a new Cache instance
 func NewCache() *Cache {
 	return &Cache{
 		data: make(map[string]interface{}),
 	}
 }
 
-// Set adds a new key value pair to the cache
 func (c *Cache) Set(key string, value interface{}) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	c.data[key] = value
 }
 
-// Get retrieves a value from the cache by its key
 func (c *Cache) Get(key string) (interface{}, bool) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
